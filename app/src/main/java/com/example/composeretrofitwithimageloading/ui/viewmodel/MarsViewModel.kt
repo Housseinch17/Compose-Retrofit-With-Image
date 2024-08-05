@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MarsViewModel @Inject constructor(
-    private val marsPhotosUseCase: MarsPhotosUseCase = MarsPhotosUseCase()
+    private val marsPhotosUseCase: MarsPhotosUseCase
 ) : ViewModel() {
     private val _marsUiState = MutableStateFlow(MarsUiState())
     val marsUiState = _marsUiState.asStateFlow()
