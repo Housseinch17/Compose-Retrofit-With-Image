@@ -9,10 +9,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.composeretrofitwithimageloading.domain.usecase.MarsPhotosUseCase
-import com.example.composeretrofitwithimageloading.ui.viewmodel.MarsViewModelFactory
 import com.example.composeretrofitwithimageloading.ui.screens.HomeScreen
 import com.example.composeretrofitwithimageloading.ui.theme.ComposeRetrofitWithImageLoadingTheme
 import com.example.composeretrofitwithimageloading.ui.viewmodel.MarsViewModel
@@ -22,20 +23,18 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var viewModelFactory: MarsViewModelFactory
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        viewModelFactory = MarsViewModelFactory(MarsPhotosUseCase())
-        val marsViewModel: MarsViewModel = ViewModelProvider(this, viewModelFactory)[MarsViewModel::class.java]
 
         setContent {
             ComposeRetrofitWithImageLoadingTheme {
-                val marsUiState by marsViewModel.marsUiState.collectAsStateWithLifecycle()
+                val viewModel: MarsViewModel = hiltViewModel()
+                val marsUiState by viewModel.marsUiState.collectAsStateWithLifecycle()
 
-                HomeScreen(modifier = Modifier.fillMaxSize().padding(10.dp), marsResponse = marsUiState.marsResponse)
+                HomeScreen(modifier = Modifier
+                    .fillMaxSize()
+                    .padding(10.dp), marsResponse = marsUiState.marsResponse)
                 }
             }
         }

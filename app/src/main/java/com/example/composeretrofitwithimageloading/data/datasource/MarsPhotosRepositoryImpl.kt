@@ -6,7 +6,7 @@ import com.example.composeretrofitwithimageloading.domain.repository.MarsPhotosR
 import javax.inject.Inject
 
 class MarsPhotosRepositoryImpl @Inject constructor(
-    private val networkMarsPhotosDataSourceImpl: NetworkMarsPhotosDataSourceImpl = NetworkMarsPhotosDataSourceImpl()
+    private val networkMarsPhotosDataSourceImpl: NetworkMarsPhotosDataSourceImpl
 ): MarsPhotosRepository {
     override suspend fun getMarsPhotos(): List<MarsItem> {
         return networkMarsPhotosDataSourceImpl.getPhotos()

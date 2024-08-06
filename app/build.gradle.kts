@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22"
+
 }
 
 android {
@@ -30,6 +33,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -49,6 +53,7 @@ android {
         }
     }
 }
+
 
 dependencies {
 
@@ -72,10 +77,16 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     //collectAsStateWithLifecycle()
     implementation(libs.androidx.lifecycle.runtime.compose)
+
+
     //hilt
     implementation(libs.androidx.hilt.navigation.fragment)
     implementation(libs.androidx.hilt.navigation.compose)
 
+
+    //Hilt
+    implementation(libs.hilt.android.v248)
+    kapt(libs.hilt.android.compiler.v248)
 
     // Retrofit
     implementation(libs.retrofit)
@@ -88,4 +99,8 @@ dependencies {
     //coil to display images as url
     implementation(libs.coil.compose)
 
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes =  true
 }

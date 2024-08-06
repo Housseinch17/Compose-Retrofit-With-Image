@@ -7,7 +7,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 
 object DataSource {
-    private const val BASE_URL = "https://android-kotlin-fun-mars-server.appspot.com"
+    val BASE_URL = "https://android-kotlin-fun-mars-server.appspot.com"
 
     /*//without serialization
     val retrofit: Retrofit = Retrofit.Builder()
