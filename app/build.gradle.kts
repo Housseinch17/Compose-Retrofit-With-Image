@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22"
+
 }
 
 android {
@@ -77,6 +80,10 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
 
 
+//Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
     // Retrofit
     implementation(libs.retrofit)
     // Retrofit with Kotlin serialization Converter
@@ -88,4 +95,7 @@ dependencies {
     //coil to display images as url
     implementation(libs.coil.compose)
 
+}
+kapt {
+    correctErrorTypes =  true
 }
