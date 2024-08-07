@@ -2,8 +2,6 @@ package com.example.composeretrofitwithimageloading.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.composeretrofitwithimageloading.data.datasource.MarsPhotosRepositoryImpl
-import com.example.composeretrofitwithimageloading.data.datasource.repository.datasourceimpl.NetworkMarsPhotosDataSourceImpl
 import com.example.composeretrofitwithimageloading.data.uistate.MarsResponse
 import com.example.composeretrofitwithimageloading.data.uistate.MarsUiState
 import com.example.composeretrofitwithimageloading.domain.usecase.MarsPhotosUseCase
@@ -18,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MarsViewModel @Inject constructor(
-    private val marsPhotosUseCase: MarsPhotosUseCase,
+    private val marsPhotosUseCase: MarsPhotosUseCase
 ) : ViewModel() {
     private val _marsUiState = MutableStateFlow(MarsUiState())
     val marsUiState = _marsUiState.asStateFlow()
@@ -43,6 +41,6 @@ class MarsViewModel @Inject constructor(
                 )
             }
         }
-
     }
+
 }
